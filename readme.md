@@ -44,7 +44,7 @@
 # Optimisations et améliorations :
 ## Nous voulons approfondir un peu plus notre projet en rajoutant :
 * ## La création de **graphiques pour chaque parking**
-* ## Des **graphiques plus précis et poussés** en prenant en compte la **localisation des parkings vélos proches des parking** pour confirmer la véritable corrélation Occupation parking/Utilisation des vélos
+* ## Des **graphiques plus précis et poussés** en prenant en compte la **localisation des parkings vélos proches de chaque parking routiers** pour confirmer la véritable corrélation Occupation parking/Utilisation des vélos
 
 ----
 # Notes : 
