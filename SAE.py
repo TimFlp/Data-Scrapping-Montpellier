@@ -1,21 +1,31 @@
+## Importations librairies 
 from urllib import request
 import requests
 from lxml import etree
 from time import gmtime, strftime , sleep
 from datetime import datetime
+## 
 
+## Initialisation fichier dat final
 f1 = open('data_graph/voiture_velo.dat','w',encoding='utf8')
 f1.close()
+##
 
 def velo_msj():
+    '''
+    Fonction qui permet de récupérer les données des vélos sur le site OpenData
+    Elle va ensuite écrire dans un fichier les données récupérées et les mettre dans le dossier /data
+    Il va ensuite calculer le taux d'utilisation 
+
+    '''
     total = 0
     free = 0
-    req=(requests.get("https://data.montpellier3m.fr/sites/default/files/ressources/TAM_MMM_VELOMAG.xml")).text
-    nom_complet4 = 'data/VELOMAG'
-    f1=open(nom_complet4,'w',encoding='utf-8')
-    f1.write(req)
+    req=(requests.get("https://data.montpellier3m.fr/sites/default/files/ressources/TAM_MMM_VELOMAG.xml")).text # Récupération page xml
+    nom_complet4 = 'data/VELOMAG' 
+    f1=open(nom_complet4,'w',encoding='utf-8') # On met le résultat de la page dans notre dossier data sous le nom VELOMAG
+    f1.write(req) # On écrit les résultats dans le fichier
     f1.close()
-    nom_complet5 = 'scrap/result_velo'
+    nom_complet5 = 'scrap/result_velo' 
     f2=open(nom_complet5,"w",encoding='utf-8')
     tree=etree.parse(nom_complet4)
     for si in tree.xpath("/vcs/sl/si"):
@@ -28,8 +38,15 @@ def velo_msj():
     taux_occup = int(((total-free)*100)/total)
     print(str(taux_occup))
     return str(taux_occup)
+##
+
+
 
 def velo_tot(taux_occup):
+    '''
+    Cette fonction permet d'écrire les données récupérées dans la précédente fonction dans un nouveau fichier qui nous
+    servira pour le traçage des graphiques (dans /data_graph)
+    '''
     #print('total : ',total,"\nfree : ",free,"\ntaux d'occupation : ",taux_occup,'%')
     f=open('data_graph/voiture_velo.dat','r',encoding='utf8')
     b = f.read()
@@ -40,11 +57,11 @@ def velo_tot(taux_occup):
     print("velo_tot")
     return None
     
+## Code parking    
 parkings=["FR_MTP_ANTI","FR_MTP_COME","FR_MTP_CORU","FR_MTP_EURO","FR_MTP_FOCH","FR_MTP_GAMB","FR_MTP_GARE","FR_MTP_TRIA","FR_MTP_ARCT","FR_MTP_PITO","FR_MTP_CIRC","FR_MTP_SABI","FR_MTP_GARC","FR_MTP_SABL","FR_MTP_MOSS","FR_STJ_SJLC","FR_MTP_MEDC","FR_MTP_OCCI","FR_CAS_VICA","FR_MTP_GA109","FR_MTP_GA250","FR_CAS_CDGA","FR_MTP_ARCE",'FR_MTP_POLY']
-
+##
 
 def voiture_msj():
-
     for i in range(len(parkings)): # On récupère la page entière au format XML et on en crée un fichier pour chaque avec les données à l'intérieur.
         print("Récupérations des données pour le parking suivant : ",parkings[i])
         url = "https://data.montpellier3m.fr/sites/default/files/ressources/"+parkings[i]+".xml" # Génération du lien en fonction du code de parkings.
@@ -102,16 +119,19 @@ def voiture_tot(tot,h):
     return None
 
 def lancement(h):
+    '''
+    Cette fonction permet de gérer le temps de réactualisation des données
+    Il vérifie par exemple si un cycle est passé (24 heures) et relance le programme autant de fois
+    que possible pour faire chaque jours
+    '''
     if h ==24:
         return None
-
     voiture = voiture_msj()
     voiture_tot(voiture,h)
     velo = velo_msj()
     velo_tot(velo)
     sleep(60*60)
     print(h)
-
     return lancement(h+1)
 
 lancement(0)
