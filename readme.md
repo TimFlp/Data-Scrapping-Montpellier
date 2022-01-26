@@ -13,7 +13,7 @@
 >* ## Il les **classe** ensuite dans un dossier nommé **'data'**
 >* ## Il va ensuite **récupèrer** les valeurs précises (comme le nombre de places libres,totales...) dans les fichiers à l'intérieur du dossier data
 >* ## Il va faire un **résumé** pour **chaque parking** de ce qu'il a récupérer et va l'**écrire dans un nouveau fichier texte stocké dans le dossier 'scrap' avec comme nom la date et l'heure du scrapping.** *Cela nous sert à comprendre les données pour vérifier les éventuelles erreurs.*
->* ## Finalement, il va **stocker** dans un nouveau fichier stocké dans le dossier 'caligo' et qui nous servira réellement **pour l'évaluation de l'utilisation des différents parkings**
+>* ## Finalement, il va **stocker** dans un nouveau fichier stocké dans le dossier 'data_graph' et qui nous servira réellement **pour l'évaluation de l'utilisation des différents parkings**
 >* ## Avec les données récoltés, un **graphique** (*produit avec GnuPlot*) se crée **en temps réel** et **s'actualise toutes les 24h** (*crée un autre graphique pour chaque jours*)
 >* ## Et ce, pour à la fois les vélos ainsi que les parkings routier.
 ## Il est important de noter que, pour créer les graphiques, nous avons choisi d'utiliser le **taux d'occupation des parkings routiers et le taux d'utilisation de vélos** **pour toute la ville**.
