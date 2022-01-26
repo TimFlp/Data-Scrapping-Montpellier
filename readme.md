@@ -48,5 +48,5 @@
 
 ----
 # Notes : 
-* ## Le programme n'est pas encore totalement fonctionnel (Il manque l'implémentation des vélos dans les données pour tracer de véritables graphiques)
+* ## Le programme n'est pas encore totalement fonctionnel (Il manque l'implémentation des données pour tracer de véritables graphiques)
 * ## Il faudrait également beaucoup plus de temps pour pouvoir mesurer sur de longues périodes pour avoir des conclusions plus pertinentes et précises.
