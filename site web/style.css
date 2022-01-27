@@ -1,0 +1,43 @@
+h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    text-decoration: underline;
+    color: rgb(201, 84, 84);
+}
+
+html {
+    background-image: url(photos/montpellier-913011_1920.jpg);
+    background-repeat: no-repeat;
+}
+
+h2 {
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+}
+
+td {
+    border: 3px solid rgb(187, 107, 107);
+    background-color:rgb(175, 132, 139);
+    margin: auto;
+}
+
+table {
+    width:100%;
+    flex-grow:1;
+}
+
+.test {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    text-align: center;
+}
+
+h3 {
+    font-weight: bold;
+    color:rgb(86, 89, 236);
+}
