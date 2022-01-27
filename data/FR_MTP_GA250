@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?> 
 <park>
-	<DateTime>2022-01-26T13:21:31</DateTime>
+	<DateTime>2022-01-27T18:11:24</DateTime>
 	<Name>GAUMONT-OUEST</Name>
 	<Status>Open</Status>
-	<Free>0194</Free>
+	<Free>0180</Free>
 	<Total>0250</Total>
 </park>
