@@ -50,8 +50,8 @@ def velo_tot(taux_occup):
     #print('total : ',total,"\nfree : ",free,"\ntaux d'occupation : ",taux_occup,'%')
     f=open('data_graph/voiture_velo.dat','r',encoding='utf8')
     b = f.read()
-    f.close
-    f=open('data_graph/voiture_velo.dat','a',encoding='utf8',newline='')
+    f.close()
+    f=open('data_graph/voiture_velo.dat','w',encoding='utf8',newline='')
     f.write(b +' '+taux_occup+'\n')
     f.close()
     print("velo_tot")
@@ -108,8 +108,8 @@ def voiture_msj():
 def voiture_tot(tot,h):
     f=open('data_graph/voiture_velo.dat','r',encoding='utf8')
     b = f.read()
-    f.close
-    f=open('data_graph/voiture_velo.dat','a',encoding='utf8',newline='')
+    f.close()
+    f=open('data_graph/voiture_velo.dat','w',encoding='utf8',newline='')
     if b=='':
         f.write(str(h)+' '+tot)
     else:
@@ -130,7 +130,7 @@ def lancement(h):
     voiture_tot(voiture,h)
     velo = velo_msj()
     velo_tot(velo)
-    sleep(60*60)
+    sleep(5)
     print(h)
     return lancement(h+1)
 
