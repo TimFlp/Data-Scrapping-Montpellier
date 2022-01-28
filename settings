@@ -1,0 +1,9 @@
+
+set xrange [0:23]
+set yrange [0:100]
+set title"Taux d'occupation des parkings | Taux d'utilisation des vélos"
+set xlabel "Temps ( en heure )"
+set ylabel "Taux ( en % )"
+set term jpeg
+set output "test.jpeg"
+plot "/home/pizzly/Data-Scrapping-Montpellier/data_graph/voiture_velo.dat" using 1:2 title"Taux d'occupation des parkings routiers" linewidth 2 with lines, "/home/pizzly/Data-Scrapping-Montpellier/data_graph/voiture_velo.dat" using 1:3 title"Taux d'utilisation des velos" linewidth 2 with lines
