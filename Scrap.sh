@@ -11,17 +11,14 @@ trace (){
 		echo "set xlabel \"Temps ( en heure )\"" >> settings
 		echo "set ylabel \"Taux ( en % )\"" >> settings
 		echo "set term jpeg" >> settings
-		echo "set output \"photo_graph/test.jpeg\"" >> settings
+		echo "set output \"photo_graph/graph.jpeg\"" >> settings
 		echo "plot \""$PWD"/data_graph/voiture_velo.dat\" using 1:2 title\"Taux d'occupation des parkings routiers\" linewidth 2 with lines, \""$PWD"/data_graph/voiture_velo.dat\" using 1:3 title\"Taux d'utilisation des velos\" linewidth 2 with lines" >> settings
 		gnuplot settings
 }
 
 commit (){
-	echo "METTRE COMMANDES COMMIT"
-	
-	
-	
-	
+    git commit -am "actualisation" photo_graph/graph.jpeg
+    git push
 }
 
 trace_final (){
@@ -36,7 +33,18 @@ trace_final (){
 		echo "set output \"historique_graphiques/$(date +%F).jpeg\"" >> settings-final
 		echo "plot \""$PWD"/data_graph/voiture_velo.dat\" using 1:2 title\"Taux d'occupation des parkings routiers\" linewidth 2 with lines, \""$PWD"/data_graph/voiture_velo.dat\" using 1:3 title\"Taux d'utilisation des velos\" linewidth 2 with lines" >> settings-final
 		gnuplot settings-final
+        git commit -am "Historique" historique_graphiques/graph.jpeg
+        git push
 }
+
+Init (){
+    read -p "E-mail : " mail
+    read -p "Pseudo : " pseudo
+	git config --global user.email $mail
+    git config --global user.name $pseudo
+}
+
+Init
 
 while [ $h -ne 23 ]; 
 do 
