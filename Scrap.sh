@@ -11,7 +11,7 @@ trace (){
 		echo "set xlabel \"Temps ( en heure )\"" >> settings
 		echo "set ylabel \"Taux ( en % )\"" >> settings
 		echo "set term jpeg" >> settings
-		echo "set output \"test.jpeg\"" >> settings
+		echo "set output \"photo_graph/test.jpeg\"" >> settings
 		echo "plot \""$PWD"/data_graph/voiture_velo.dat\" using 1:2 title\"Taux d'occupation des parkings routiers\" linewidth 2 with lines, \""$PWD"/data_graph/voiture_velo.dat\" using 1:3 title\"Taux d'utilisation des velos\" linewidth 2 with lines" >> settings
 		gnuplot settings
 }
@@ -33,7 +33,7 @@ trace_final (){
 		echo "set xlabel \"Temps ( en heure )\"" >> settings-final
 		echo "set ylabel \"Taux ( en % )\"" >> settings-final
 		echo "set term jpeg" >> settings-final
-		echo "set output \"$(date +%F).jpeg\"" >> settings-final
+		echo "set output \"historique_graphiques/$(date +%F).jpeg\"" >> settings-final
 		echo "plot \""$PWD"/data_graph/voiture_velo.dat\" using 1:2 title\"Taux d'occupation des parkings routiers\" linewidth 2 with lines, \""$PWD"/data_graph/voiture_velo.dat\" using 1:3 title\"Taux d'utilisation des velos\" linewidth 2 with lines" >> settings-final
 		gnuplot settings-final
 }
