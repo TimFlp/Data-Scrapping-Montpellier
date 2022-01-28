@@ -48,9 +48,10 @@ Init
 
 while [ $h -ne 23 ]; 
 do 
-	trace_final
 	trace
 	commit
     ((h++))
 	sleep 3700
 done
+
+trace_final
