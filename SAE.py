@@ -36,7 +36,7 @@ def velo_msj():
         f2.write(fr+'\n')
     f2.close()
     taux_occup = int(((total-free)*100)/total)
-    print(str(taux_occup))
+    print("Taux d'utilisation des vélos : "+str(taux_occup)+"%")
     return str(taux_occup)
 ##
 
@@ -54,7 +54,6 @@ def velo_tot(taux_occup):
     f=open('data_graph/voiture_velo.dat','w',encoding='utf8',newline='')
     f.write(b +' '+taux_occup+'\n')
     f.close()
-    print("velo_tot")
     return None
     
 ## Code parking    
@@ -102,7 +101,7 @@ def voiture_msj():
                     f1.write("\nParking : "+nom.text+" fermé!\n")       
       
     f1.close()
-    print(str(int((tot-fr)*100/tot)))
+    print("Taux d'occupation des parkings : "+str(int((tot-fr)*100/tot))+"%")
     return str(int((tot-fr)*100/tot))
 
 def voiture_tot(tot,h):
@@ -115,7 +114,6 @@ def voiture_tot(tot,h):
     else:
         f.write(b+str(h)+' '+tot)
     f.close()
-    print('voiture_tot')
     return None
 
 def lancement(h):
@@ -130,8 +128,8 @@ def lancement(h):
     voiture_tot(voiture,h)
     velo = velo_msj()
     velo_tot(velo)
+    print("heure : ",h)
     sleep(5)
-    print(h)
     return lancement(h+1)
 
 lancement(0)
