@@ -2,6 +2,7 @@
 ## Introduction : 
 ## Notre projet consiste à récupérer en temps réel les données des **parkings routiers** de la ville de Montpellier ainsi que les utilisations des **stations de vélo** de cette même ville pour analyser l'influence entre les deux. 
 ## Pour ceci, nous avons écrit des scripts python qui récupère les données mesurées en quasi temps réel ( toutes les 5-10 minutes ) de l'activité des parkings routier ainsi que ceux pour les vélos, qui sont disponibles sur le site ***data.montpellier3m.fr***.
+## Finalement, un script bash s'occupera d'actualiser notre Github automatiquement avec les nouvelles données chaque heure, ce qui aura pour conséquence d'actualiser notre site Internet en affichant et sauvegardant les nouvelles valeurs ainsi que les anciennes.
 
 ----
 # Notre réalisation : 
@@ -15,7 +16,7 @@
 >* ## Il va faire un **résumé** pour **chaque parking** de ce qu'il a récupérer et va l'**écrire dans un nouveau fichier texte stocké dans le dossier 'scrap' avec comme nom la date et l'heure du scrapping.** *Cela nous sert à comprendre les données pour vérifier les éventuelles erreurs.*
 >* ## Finalement, il va **stocker** dans un nouveau fichier stocké dans le dossier 'data_graph' et qui nous servira réellement **pour l'évaluation de l'utilisation des différents parkings**
 >* ## Avec les données récoltés, un **graphique** (*produit avec GnuPlot*) se crée **en temps réel** et **s'actualise toutes les 24h** (*crée un autre graphique pour chaque jours*)
->* ## Et ce, pour à la fois les vélos ainsi que les parkings routier.
+>* ## Finalement, un script bash actualisera les données sur le Github principal et les valeurs ainsi que le graphique qui se trace au fur et à mesure, s'affiche sur notre site Internet.
 ## Il est important de noter que, pour créer les graphiques, nous avons choisi d'utiliser le **taux d'occupation des parkings routiers et le taux d'utilisation de vélos** **pour toute la ville**.
 ## Et enfin, **le programme se relance toutes les 24h en entier** et **récupère des données toutes les heures**, pour éviter les **problèmes d'actualisation** qu'on peut avoir avec le site d'OpenData.
 -----
@@ -31,14 +32,16 @@
 
 ---- 
 # Détails techniques 
-## Pour le graphique avec gnuplot, nous avons choisi les options suivantes : 
-    set yrange [0:100]  # Vu que nous avons seulement des données entre 0 et 100%
-    set xrange [0:23]  # Pour afficher les heures de minuit à 23 heures. 
-    set title "Occupation parkings/velo au cours de la journee"  
-    set xlabel "Temps ( en heures )"  
-    set ylabel "Taux d'occupation ( en % )"  
+## Pour le graphique avec gnuplot, nous avons choisi les options suivantes (Ces options sont incluses dans notre script bash et ainsi les programmes finaux se veulent polyvalent et executables sur n'importe quelle machine avec Linux) : 
+    set xrange [0:23] # Abscisse qui représente les heures de la journée
+    set yrange [0:100] # Ordonnée qui représente le taux de pourcentage (donc entre 0 et 100%)
+    set title"Taux d'occupation des parkings | Taux d'utilisation des vélos" # Pour le titre du graphique
+    set xlabel "Temps ( en heure )" # Titre abscisse
+    set ylabel "Taux ( en % )" # Titre ordonnée
+    set term jpeg # Pour sortir en image sous format .jpeg
+    set output "photo_graph/graph.jpeg"  # Où on stocke l'image qui en sort
 ## Et finalement, pour tracer le graphique :
-    plot "voiture.dat" title"taux occupation voiture" linewidth 2 linecolor 1 with lines,"velo.dat" title"taux utilisation velos" linewidth 3 linecolor 3 with lines
+    plot "$HOME/Data-Scrapping-Montpellier/data_graph/voiture_velo.dat" using 1:2 title"Taux d'occupation des parkings routiers" linewidth 2 with lines, "$HOME/Data-Scrapping-Montpellier/data_graph/voiture_velo.dat" using 1:3 title"Taux d'utilisation des velos" linewidth 2 with lines
 
 -----
 # Optimisations et améliorations :
@@ -48,5 +51,5 @@
 
 ----
 # Notes : 
-* ## Le programme n'est pas encore totalement fonctionnel (Il manque l'implémentation des données pour tracer de véritables graphiques)
+* ## Le programme n'est pas encore totalement fonctionnel (Il manque le git push automatique)
 * ## Il faudrait également beaucoup plus de temps pour pouvoir mesurer sur de longues périodes pour avoir des conclusions plus pertinentes et précises.
