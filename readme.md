@@ -52,4 +52,4 @@
 ----
 # Notes : 
 * ## Le programme n'est pas encore totalement fonctionnel (Il manque le git push automatique)
-* ## Il faudrait également beaucoup plus de temps pour pouvoir mesurer sur de longues périodes pour avoir des conclusions plus pertinentes et précises.
+* ## Cependant, vous pouvez télécharger nos programmes et le faire fonctionner en local sur votre machine (*Le dossier Data-Scrap-Montpellier (local) ). Ils seront totalement fonctionnels et s'actualiseront au fur et à mesure.
